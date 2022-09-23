@@ -53,7 +53,7 @@ hr.main-hr {
 				<hr style="background-color: black;" />
 				<ul>
 					<li ng-repeat="item in toBuyList.items">Buy {{ item.quantity }} {{ item.name }}
-						<button ng-click="toBuyList.removeItem($index);" class="glyphicon glyphicon-ok">Remove Item</button>
+						<button ng-click="toBuyList.removeItem($index);" class="glyphicon glyphicon-ok">Bought</button>
 					</li>
 				</ul>
 				<div class="emptyMessage error" ng-if="toBuyList.errorMessage">{{toBuyList.errorMessage}}</div>
