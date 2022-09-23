@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Shopping List Check Off</title>
+<meta charset="utf-8">
+<script src="angular.min.js"></script>
+<script src="app.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles/bootstrap.min.css">
+
+<style>
+.emptyMessage {
+	font-weight: bold;
+	color: red;
+	font-size: 1.2em;
+}
+
+li {
+	margin-bottom: 7px;
+	font-size: 1.2em;
+}
+
+li>button {
+	margin-left: 6px;
+}
+
+button {
+	color: green;
+	line-height: 1.5 !important;
+}
+
+.glyphicon-ok:before {
+	padding-right: 5px;
+}
+
+hr.main-hr {
+	height: 2px;
+	background-color: gray;
+}
+</style>
+</head>
+
+<body ng-app="ShoppingListCheckOff">
+	<div class="container">
+		<h1>Shopping List Check Off</h1>
+		<hr class="main-hr" />
+		<div class="row">
+			<!-- To Buy List -->
+			<div id="toBuyList" ng-controller="ToBuyController as toBuyList" class="col-md-6">
+				<h2>
+					<strong>To Buy</strong>
+				</h2>
+				<hr style="background-color: black;" />
+				<ul>
+					<li ng-repeat="item in toBuyList.items">Buy {{ item.quantity }} {{ item.name }}
+						<button ng-click="toBuyList.removeItem($index);" class="glyphicon glyphicon-ok">Remove Item</button>
+					</li>
+				</ul>
+				<div class="emptyMessage error" ng-if="toBuyList.errorMessage">{{toBuyList.errorMessage}}</div>
+			</div>
+
+			<!-- Already Bought List -->
+			<div id="alreadyBoughtList" ng-controller="AlreadyBoughtController as alreadyBoughtList" class="col-md-6">
+				<h2>
+					<strong>Already Bought</strong>
+				</h2>
+				<hr style="background-color: gray;" />
+				<ul>
+					<li ng-repeat="item in alreadyBoughtList.items">Bought {{ item.quantity }} {{ item.name }}</li>
+				</ul>
+				<div class="emptyMessage error" ng-if="alreadyBoughtList.items.length == 0">{{alreadyBoughtList.errorMessage}}</div>
+			</div>
+		</div>
+		<hr class="main-hr" />
+	</div>
+</body>
+</html>
